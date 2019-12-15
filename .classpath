@@ -65,6 +65,5 @@
 	<classpathentry kind="lib" path="src/lib/spring-websocket-5.1.9.RELEASE-javadoc.jar"/>
 	<classpathentry kind="lib" path="src/lib/spring-websocket-5.1.9.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="src/lib/spring-websocket-5.1.9.RELEASE.jar"/>
-	<classpathentry kind="lib" path="src/lib/aspectjweaver-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- 
+	Add a logger config to see logging messages.		
+	- For more detailed logs, set values to "FINEST"
+ -->
+
+<bean id="myLoggerConfig" class="com.basepgrm.MyLoggerConfig" init-method="initLogger">
+    	<property name="rootLoggerLevel" value="FINE" />
+    	<property name="printedLoggerLevel" value="FINE"/>
+</bean>
+
+
+<!-- Loading Proprty files -->
+<context:property-placeholder location="classpath:external.properties" />
+
+
+<!-- Step 3 Configure Dependency injection in Spring Config File -->
+<!-- define dependency  -->
+<bean id="myFortune" class="com.depencyInjection.sample.HappyFortuneService"/>
+<!-- config init and destroy method -->
+<bean id="myCoach" class="com.depencyInjection.sample.CricketCoach" init-method="beginCode" destroy-method="destoryCode"  >
+<!-- Set up constructor injection -->
+<constructor-arg ref="myFortune"/>
+</bean>
+
+
+<bean id="myTennis" class="com.depencyInjection.sample.TennisCoach" >
+<!-- Setup Seteer Injection -->
+<property name="fortunceservice" ref="myFortune"/>
+
+<!-- injecting Literal Values -->
+
+<property name="name" value="${name.palyer}"/>
+<property name="country" value="${country.player}"/>
+</bean>
+
+
+<bean id="myTennisPro" class="com.depencyInjection.sample.TennisCoach" scope="prototype" init-method="beginCode" destroy-method="destoryCode" >
+<!-- Setup Seteer Injection -->
+<property name="fortunceservice" ref="myFortune"/>
+
+<!-- injecting Literal Values -->
+
+<property name="name" value="${name.palyer}"/>
+<property name="country" value="${country.player}"/>
+</bean>
+   
+   
+   
+   </beans>
